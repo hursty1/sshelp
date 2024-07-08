@@ -42,6 +42,7 @@ func main() {
 	
 	// Read the YAML configuration file
     configFile, err := os.ReadFile("config.yaml")
+	_ = err
 	configFilePath := "config.yaml"
     if _, err := os.Stat(configFilePath); os.IsNotExist(err) {
         // log.Fatalf("Failed to read config file: %s", err)
@@ -49,10 +50,11 @@ func main() {
 		emptyConfig := Config{Devices: make(map[string]DeviceConfig)}
         emptyConfigData, err := yaml.Marshal(&emptyConfig)
 		_ = err
-		err = os.WriteFile(".", emptyConfigData, 0644)
+		err = os.WriteFile(configFilePath, emptyConfigData, 0644)
         if err != nil {
             log.Fatalf("Failed to create config file: %s", err)
         }
+		os.Exit(2)
     }
 
     // Unmarshal the YAML file into a Config struct
