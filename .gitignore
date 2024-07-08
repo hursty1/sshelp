@@ -2,3 +2,4 @@ config.yaml
 main.go.old
 *.exe
 *.yaml
+*.ps1

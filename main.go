@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 
 	"gopkg.in/yaml.v2"
@@ -27,6 +28,9 @@ type Args struct {
 	addNew bool
 	listDevices bool
 }
+
+var configFilePath string
+
 func main() {
 
 	addNewDevice := flag.Bool("add", false, "Add New Device to the Config")
@@ -39,11 +43,15 @@ func main() {
 		listDevices: *listDevices,
 	}
 
-	
-	// Read the YAML configuration file
-    configFile, err := os.ReadFile("config.yaml")
-	_ = err
-	configFilePath := "config.yaml"
+	// Get the directory where the executable is located
+    exePath, err := os.Executable()
+    if err != nil {
+        log.Fatalf("Failed to get executable path: %s", err)
+    }
+    exeDir := filepath.Dir(exePath)
+    configFilePath = filepath.Join(exeDir, "config.yaml")
+
+	// configFilePath := "c:/utils/config.yaml"
     if _, err := os.Stat(configFilePath); os.IsNotExist(err) {
         // log.Fatalf("Failed to read config file: %s", err)
 		fmt.Println("Failed to read the file creating a blank one")
@@ -56,7 +64,11 @@ func main() {
         }
 		os.Exit(2)
     }
-
+	// Read the YAML configuration file
+    configFile, err := os.ReadFile(configFilePath)
+    if err != nil {
+        log.Fatalf("Failed to read config file: %s", err)
+    }
     // Unmarshal the YAML file into a Config struct
     var config Config
     err = yaml.Unmarshal(configFile, &config)
@@ -164,7 +176,7 @@ func saveToFile(config Config) {
 	}
 
 	// Write the updated config back to the file
-	err = os.WriteFile("config.yaml", newConfigData, 0644)
+	err = os.WriteFile(configFilePath, newConfigData, 0644)
 	if err != nil {
 		panic(err)
 	}
