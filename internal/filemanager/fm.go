@@ -12,6 +12,7 @@ import (
 type Config struct {
 	Devices map[string]DeviceConfig `yaml:"devices"`
 }
+
 type DeviceConfig struct {
 	Username string `yaml:"username"`
 	Password string `yaml:"password"`
@@ -19,9 +20,22 @@ type DeviceConfig struct {
 	Port     string `yaml:"port"`
 	Notes    string `yaml:"notes"`
 }
+
 var appDir = "sshelp"
 
 
+
+
+func LoadConfig() (Config, error) {
+	var config Config
+
+	err := config.Read()
+	if err != nil {
+		return Config{}, err
+	}
+
+	return config, nil
+}
 func create_or_get_file_path() (string, error) {
 	configDir, err := os.UserConfigDir()
 	if err != nil {
@@ -92,5 +106,22 @@ func (c *Config) AddDevice(key string, device DeviceConfig) error {
 }
 
 //update
+func (c *Config) Update(key string, device DeviceConfig) error {
+	if _, ok := c.Devices[key]; !ok {
+		return fmt.Errorf("Device: %s does not exist", key)
+	}
+	
+	c.Devices[key] = device
+
+	return nil
+}
 
 //delete
+
+func (c *Config) Delete(key string) error {
+	if _, ok := c.Devices[key]; !ok {
+		return fmt.Errorf("Device: %s does not exist", key)
+	}
+	c.Delete(key)
+	return nil
+}
