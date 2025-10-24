@@ -1,6 +1,8 @@
 package version
 
-import "runtime/debug"
+import (
+	"runtime/debug"
+)
 
 func Get() string {
 	info, ok := debug.ReadBuildInfo()
@@ -12,5 +14,6 @@ func Get() string {
 		return info.Main.Version
 	}
 
+	
 	return "dev"
 }
