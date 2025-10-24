@@ -22,21 +22,15 @@ var upgradeCmd = &cobra.Command{
             fmt.Println("sshelp is up to date.")
             return
         }
-		fmt.Println("Upgrading sshelp to the latest version...")
-
-
+        
+        
         if runtime.GOOS == "windows" {
-            goPath, _ := exec.LookPath("go")
-            updater := fmt.Sprintf(
-                `cmd /C "timeout /t 1 >nul && "%s" install github.com/hursty1/sshelp@latest && sshelp --version && pause"`,
-                goPath,
-            )
-            _ = exec.Command("cmd", "/C", "start", "", updater).Start()
-            fmt.Println("New updrate")
-            fmt.Println("Launching updater... exiting current process.")
+            fmt.Println("run: go install github.com/hursty1/sshelp@latest")
+            fmt.Println("to upgrade to the latest version.")
             return
         }
-
+        
+        fmt.Println("Upgrading sshelp to the latest version...")
         command := exec.Command("go", "install", "github.com/hursty1/sshelp@latest")
         command.Stdout = os.Stdout
         command.Stderr = os.Stderr
