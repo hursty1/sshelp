@@ -21,6 +21,14 @@ GitHub → Settings → Actions → General → Workflow permissions
 
 Select:
 
+
+bottom-right corner → click the encoding label (like “UTF-8 with BOM”)
+
+choose “Save with Encoding → UTF-8” (no BOM)
+
+make sure the only contents are:
+
+
 # Usage
 
 Helps manage all of the ssh connections you might have and reminds you of the password for that connection

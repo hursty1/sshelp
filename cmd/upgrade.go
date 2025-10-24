@@ -39,7 +39,7 @@ var upgradeCmd = &cobra.Command{
 
 
 func LatestVersion() (string, error) {
-    resp, err := http.Get("https://api.github.com/repos/hursty1/ssh_tool/tags")
+    resp, err := http.Get("https://api.github.com/repos/hursty1/sshelp/tags")
     if err != nil {
         return "", err
     }
