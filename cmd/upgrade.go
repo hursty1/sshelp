@@ -21,31 +21,30 @@ var upgradeCmd = &cobra.Command{
             fmt.Println("sshelp is up to date.")
             return
         }
-		// install the latest version
-		command := exec.Command("go", "install", "github.com/hursty1/sshelp@latest")
+		fmt.Println("Upgrading sshelp to the latest version...")
+
+        command := exec.Command("go", "install", "github.com/hursty1/sshelp@latest")
         command.Stdout = os.Stdout
         command.Stderr = os.Stderr
-        
-        output, err := command.CombinedOutput()
-        fmt.Println(string(output)) // show everything Go wrote
-        if err != nil {
-            fmt.Printf("Upgrade failed (%v)\n", err)
-            return
-        }
+
         if err := command.Run(); err != nil {
-            fmt.Println("Upgrade failed:", err)
+            fmt.Printf("Upgrade failed: %v\n", err)
             return
         }
 
+        fmt.Println("Upgrade completed. Verifying version...")
 
-		// Get the new version info
-		command = exec.Command("sshelp", "--version")
-		b, err := command.Output()
-		cobra.CheckErr(err)
-		re := regexp.MustCompile(`v\d+\.\d+\.\d+`)
-		version := re.FindString(string(b))
-		fmt.Printf("Successfully upgraded to %s!\n", version)
-		os.Exit(0)
+        command = exec.Command("sshelp", "--version")
+        b, err := command.Output()
+        if err != nil {
+            fmt.Println("Error checking new version:", err)
+            return
+        }
+
+        re := regexp.MustCompile(`v\d+\.\d+\.\d+`)
+        v := re.FindString(string(b))
+        fmt.Printf("✅ Successfully upgraded to %s!\n", v)
+        os.Exit(0)
 	},
 }
 
