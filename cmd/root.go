@@ -30,6 +30,8 @@ var rootCmd = &cobra.Command{
 func Run() {
 	rootCmd.AddCommand(listCmd)
 	rootCmd.AddCommand(addCmd)
+	rootCmd.AddCommand(deleteCmd)
+	rootCmd.AddCommand(selectCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println("Error:", err)
