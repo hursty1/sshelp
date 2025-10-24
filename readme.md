@@ -1,5 +1,34 @@
 SSH Utility
 
+# Installing
+
+go install https://github.com/hursty1/ssh_tool/tree/main/cmd/sshelp@latest
+
+
+# Usage
+
+Helps manage all of the ssh connections you might have and reminds you of the password for that connection
+
+Usage:
+  sshelp [command]
+
+Available Commands:
+  add         Add New device to the config file
+  completion  Generate the autocompletion script for the specified shell
+  delete      Delete a device config
+  help        Help about any command
+  list        List all of the configured hosts
+  select      Select a device to start a ssh connection
+
+Flags:
+  -h, --help   help for sshelp
+
+Use "sshelp [command] --help" for more information about a command.
+
+
+
+
+# Notes
 
 This is a tool to assist me with managing my different remote clients (Raspberry Pi's)
 
@@ -9,7 +38,7 @@ I found that trying to control the connection within go and auto enter the passw
 to starting the connection
 
 **
-TODO
+# TODO
 
 Add password hashing (enter a master password to unlock)
 Add ability to update device record (sshelp --update pi3) as example would ask for verify / change values
