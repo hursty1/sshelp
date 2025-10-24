@@ -9,13 +9,25 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  tag:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          VERSION="$(cat version.txt)"
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create and push tag
+        run: |
+          # Remove BOMs, CRLF, and nulls just in case
+          VERSION=$(cat version.txt | tr -d '\r' | tr -d '\n' | tr -d '\000')
+          echo "Tagging version '$VERSION'"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git tag "$VERSION"
-          git push origin tag "$VERSION"
+          git push origin "$VERSION"
