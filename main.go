@@ -1,6 +1,6 @@
 package main
 
-import "github.com/hursty1/ssh_tool/cmd"
+import "github.com/hursty1/sshelp/cmd"
 
 func main() {
 	cmd.Run()

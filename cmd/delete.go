@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/hursty1/ssh_tool/internal/filemanager"
+	"github.com/hursty1/sshelp/internal/filemanager"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )

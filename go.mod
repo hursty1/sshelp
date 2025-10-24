@@ -1,4 +1,4 @@
-module github.com/hursty1/ssh_tool
+module github.com/hursty1/sshelp
 
 go 1.21.5
 

@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	version "github.com/hursty1/ssh_tool"
+	version "github.com/hursty1/sshelp/version"
 	"github.com/spf13/cobra"
 )
 

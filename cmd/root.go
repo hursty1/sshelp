@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hursty1/ssh_tool/internal/filemanager"
+	"github.com/hursty1/sshelp/internal/filemanager"
 	"github.com/spf13/cobra"
 )
 
