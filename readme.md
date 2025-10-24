@@ -10,6 +10,17 @@ git commit -m "add xyz"
 git tag v0.2.0 && git push origin v0.2.0
 sshelp upgrade
 
+# Github Actions
+
+Set-Content version.txt "v0.1.4" -NoNewline -Encoding utf8 ## Encoding fix
+
+Enable write permissions for workflows
+
+Go to:
+GitHub → Settings → Actions → General → Workflow permissions
+
+Select:
+
 # Usage
 
 Helps manage all of the ssh connections you might have and reminds you of the password for that connection
