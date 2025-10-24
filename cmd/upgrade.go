@@ -23,8 +23,12 @@ var upgradeCmd = &cobra.Command{
         }
 		// install the latest version
 		command := exec.Command("go", "install", "github.com/hursty1/sshelp@latest")
-		_, err := command.Output()
-		cobra.CheckErr(err)
+        command.Stdout = os.Stdout
+        command.Stderr = os.Stderr
+        if err := command.Run(); err != nil {
+            fmt.Println("Upgrade failed:", err)
+            return
+        }
 
 		// Get the new version info
 		command = exec.Command("sshelp", "--version")

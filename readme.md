@@ -10,6 +10,9 @@ git commit -m "add xyz"
 git tag v0.1.7 && git push origin v0.1.7
 sshelp upgrade
 
+## Verify tag
+curl https://proxy.golang.org/github.com/hursty1/sshelp/@v/v0.1.7.info
+
 # Github Actions
 
 Set-Content version.txt "v0.1.4" -NoNewline -Encoding utf8 ## Encoding fix
