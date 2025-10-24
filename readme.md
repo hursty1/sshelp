@@ -2,7 +2,7 @@ SSH Utility
 
 # Installing
 
-go install https://github.com/hursty1/ssh_tool/tree/main/cmd/sshelp@latest
+go install github.com/hursty1/ssh_tool/cmd/sshelp@latest
 
 
 # Usage

@@ -1,4 +1,4 @@
-module main
+module github.com/hursty1/ssh_tool
 
 go 1.21.5
 
