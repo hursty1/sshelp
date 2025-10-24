@@ -3,9 +3,9 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"main/internal/filemanager"
 	"os"
 
+	"github.com/hursty1/ssh_tool/internal/filemanager"
 	"github.com/spf13/cobra"
 )
 

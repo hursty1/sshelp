@@ -4,10 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"log"
-	"main/internal/filemanager"
 	"os"
 	"strings"
 
+	"github.com/hursty1/ssh_tool/internal/filemanager"
 	"github.com/spf13/cobra"
 )
 

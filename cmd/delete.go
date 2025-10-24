@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"main/internal/filemanager"
 
+	"github.com/hursty1/ssh_tool/internal/filemanager"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
