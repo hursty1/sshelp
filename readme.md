@@ -4,6 +4,11 @@ SSH Utility
 
 go install github.com/hursty1/ssh_tool/cmd/sshelp@latest
 
+# Upgrades
+
+git commit -m "add xyz"
+git tag v0.2.0 && git push origin v0.2.0
+sshelp upgrade
 
 # Usage
 

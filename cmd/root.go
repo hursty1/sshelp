@@ -32,6 +32,8 @@ func Run() {
 	rootCmd.AddCommand(addCmd)
 	rootCmd.AddCommand(deleteCmd)
 	rootCmd.AddCommand(selectCmd)
+	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(upgradeCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println("Error:", err)
