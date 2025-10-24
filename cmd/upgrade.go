@@ -17,7 +17,7 @@ var upgradeCmd = &cobra.Command{
 	Use: "upgrade",
 	Short:   "Installs the latest version of the CLI.",
 	Run: func(cmd *cobra.Command, args []string) {
-		if !IsOutdated(version.Version) {
+		if !IsOutdated(version.Version()) {
             fmt.Println("sshelp is up to date.")
             return
         }
