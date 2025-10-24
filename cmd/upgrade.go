@@ -25,10 +25,18 @@ var upgradeCmd = &cobra.Command{
 		command := exec.Command("go", "install", "github.com/hursty1/sshelp@latest")
         command.Stdout = os.Stdout
         command.Stderr = os.Stderr
+        
+        output, err := command.CombinedOutput()
+        fmt.Println(string(output)) // show everything Go wrote
+        if err != nil {
+            fmt.Printf("Upgrade failed (%v)\n", err)
+            return
+        }
         if err := command.Run(); err != nil {
             fmt.Println("Upgrade failed:", err)
             return
         }
+
 
 		// Get the new version info
 		command = exec.Command("sshelp", "--version")
