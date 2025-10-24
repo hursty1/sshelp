@@ -17,12 +17,12 @@ var upgradeCmd = &cobra.Command{
 	Use: "upgrade",
 	Short:   "Installs the latest version of the CLI.",
 	Run: func(cmd *cobra.Command, args []string) {
-		if !IsOutdated(version.Version()) {
+		if !IsOutdated(version.Get()) {
             fmt.Println("sshelp is up to date.")
             return
         }
 		// install the latest version
-		command := exec.Command("go", "install", "github.com/hursty1/ssh_tool/cmd/sshelp@latest")
+		command := exec.Command("go", "install", "github.com/hursty1/sshelp@latest")
 		_, err := command.Output()
 		cobra.CheckErr(err)
 
@@ -70,9 +70,14 @@ func IsOutdated(current string) bool {
     current = strings.TrimSpace(current)
     latest = strings.TrimSpace(latest)
 
-    if current == "" || current == "dev" {
+    if current == "" {
         fmt.Println("unknown current version, skipping update check")
         return false
+    }
+
+    if current == "dev" {
+        fmt.Println("development build detected — upgrading to latest release...")
+        return true
     }
 
     if latest != current {

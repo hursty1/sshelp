@@ -11,6 +11,6 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the current version of sshelp",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("sshelp version:", version.Version())
+		fmt.Println("sshelp version:", version.Get())
 	},
 }

@@ -2,7 +2,7 @@ package version
 
 import "runtime/debug"
 
-func Version() string {
+func Get() string {
 	info, ok := debug.ReadBuildInfo()
 	if !ok {
 		return "dev"
