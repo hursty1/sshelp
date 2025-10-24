@@ -26,11 +26,14 @@ var upgradeCmd = &cobra.Command{
 
 
         if runtime.GOOS == "windows" {
-            // Start a detached cmd that waits for us to exit, then installs and shows version
-            // Note: `start` detaches; `timeout` gives us time to exit & release the lock.
-            cmdline := `cmd /c start "" cmd /c "timeout /t 1 >nul && go install github.com/hursty1/sshelp@latest && sshelp --version && pause"`
-            _ = exec.Command("cmd", "/c", cmdline).Start()
-            fmt.Println("Launching updater in a new window… this instance will exit now.")
+            goPath, _ := exec.LookPath("go")
+            updater := fmt.Sprintf(
+                `cmd /C "timeout /t 1 >nul && "%s" install github.com/hursty1/sshelp@latest && sshelp --version && pause"`,
+                goPath,
+            )
+            _ = exec.Command("cmd", "/C", "start", "", updater).Start()
+            fmt.Println("New updrate")
+            fmt.Println("Launching updater... exiting current process.")
             return
         }
 
