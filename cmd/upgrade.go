@@ -7,7 +7,6 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
-	"runtime"
 	"strings"
 
 	version "github.com/hursty1/sshelp/version"
@@ -24,11 +23,11 @@ var upgradeCmd = &cobra.Command{
         }
         
         
-        if runtime.GOOS == "windows" {
-            fmt.Println("run: go install github.com/hursty1/sshelp@latest")
-            fmt.Println("to upgrade to the latest version.")
-            return
-        }
+        // if runtime.GOOS == "windows" {
+        //     fmt.Println("run: go install github.com/hursty1/sshelp@latest")
+        //     fmt.Println("to upgrade to the latest version.")
+        //     return
+        // }
         
         fmt.Println("Upgrading sshelp to the latest version...")
         command := exec.Command("go", "install", "github.com/hursty1/sshelp@latest")
@@ -42,7 +41,7 @@ var upgradeCmd = &cobra.Command{
 
         fmt.Println("Upgrade completed. Verifying version...")
 
-        command = exec.Command("sshelp", "--version")
+        command = exec.Command("sshelp", "version")
         b, err := command.Output()
         if err != nil {
             fmt.Println("Error checking new version:", err)
@@ -51,7 +50,7 @@ var upgradeCmd = &cobra.Command{
 
         re := regexp.MustCompile(`v\d+\.\d+\.\d+`)
         v := re.FindString(string(b))
-        fmt.Printf("✅ Successfully upgraded to %s!\n", v)
+        fmt.Printf("Successfully upgraded to %s!\n", v)
         os.Exit(0)
 	},
 }

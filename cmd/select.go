@@ -60,7 +60,7 @@ func selectDevice(cfg filemanager.Config) (string, error) {
 	}
 
 	prompt := promptui.Select{
-		Label: "Select a device to delete",
+		Label: "Select a device to open connection",
 		Items: keys,
 		Size: 10,
 	}
